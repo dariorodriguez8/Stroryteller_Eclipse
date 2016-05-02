@@ -14,28 +14,21 @@ public class princ_Control extends princ{
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String usuarioN = usuario.getText();
-				String Contraseña = passwordField.getText();
-				if(usuarioN.equals("")||Contraseña.equals("")){
+				String Contrasena = passwordField.getText();
+				if(usuarioN.equals("")||Contrasena.equals("")){
 					JOptionPane.showMessageDialog(null, "Faltan datos por completar");
 					usuario.setText("");
 					passwordField.setText("");
 				}
 				else{
 				validador = new Validador();
-				if(validador.ValidadorQ(usuarioN,Contraseña)){
+				if(validador.ValidadorQ(usuarioN,Contrasena)){
 					System.out.println("logueado");
 					
 				}else{
 					usuario.setText("");
 					passwordField.setText("");
-					try {
-						//ubica el jdialog encima de nuestro jFrame antes de darle visivilidad
-						dialog.setLocation(thisobject.getX(), thisobject.getY());
-						dialog.setVisible(true);
-					} catch (Exception z) {
-						z.printStackTrace();
-					}
-					
+					JOptionPane.showMessageDialog(null, "Datos de login incorrectos");
 				}}
 			}
 		});	

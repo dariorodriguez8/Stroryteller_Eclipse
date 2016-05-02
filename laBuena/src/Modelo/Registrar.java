@@ -5,15 +5,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Registrar extends Conexion {
-	public void CrearUsuario(String nombre,String Contraseña,String email){
+public class Registrar{
+
+	public void CrearUsuario(String nombre,String Contrasena,String email){
 	try
 	{
-	Connection con = Conexion();
-	 //creacion de statement
-	Statement myStmnt = con.createStatement();
+	//creacion de statement
+	Statement myStmnt = Conexion.con.createStatement();
 	//ejecuta un query
-	String update = "insert into Users (Usuario, Contraseña, Img_usuario, Email) values ('" + nombre + "' , '" + Contraseña + "', null, '"+ email +"')";
+	String update = "insert into Users (Usuario, Contraseña, Img_usuario, Email) values ('" + nombre + "' , '" + Contrasena + "', null, '"+ email +"')";
 	
 	myStmnt.executeUpdate(update);
 	

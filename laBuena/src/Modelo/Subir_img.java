@@ -14,7 +14,7 @@ import org.omg.CORBA.portable.InputStream;
 
 import com.mysql.jdbc.PreparedStatement;
 
-public class Subir_img extends Conexion{
+public class Subir_img{
 	public static void main(String[] args) {
 		File f = new File("/Users/noel98_socorro/Desktop/login.jpg");
 		Subir_img img = new Subir_img(f, "dario");
@@ -22,7 +22,7 @@ public class Subir_img extends Conexion{
 	public Subir_img (File img, String nombre){
 		try
 		{
-		Connection con = Conexion();
+		Connection con = Conexion.GetInstancia().con;
 		//creacion de statement
 		//Statement myStmnt = con.createStatement();
 		PreparedStatement psmnt = null;

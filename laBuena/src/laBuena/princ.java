@@ -3,6 +3,7 @@ package laBuena;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import Modelo.Conexion;
 import Modelo.Validador;
 
 import javax.swing.JFrame;
@@ -21,16 +22,20 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
 public class princ extends JFrame {
 
+	private MenuLogueado M = new MenuLogueado(this);
+	private CuentosGuardados C = new CuentosGuardados(this);
+	
+	
 	protected JPanel contentPane;
 	protected JTextField usuario;
 	protected JPasswordField passwordField;
-	protected ErrorRegistro dialog;
 	protected princ frame;
 	protected JLabel label;
 	protected Validador validador;
@@ -127,37 +132,34 @@ public class princ extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String usuarioN = usuario.getText();
-				String Contraseña = passwordField.getText();
-				if(usuarioN.equals("")||Contraseña.equals("")){
+				String Contrasena = passwordField.getText();
+				if(usuarioN.equals("")||Contrasena.equals("")){
 					JOptionPane.showMessageDialog(null, "Faltan datos por completar");
 					usuario.setText("");
 					passwordField.setText("");
 				}
 				else{
 				validador = new Validador();
-				if(validador.ValidadorQ(usuarioN,Contraseña)){
-					System.out.println("logueado");
-					
+				if(validador.ValidadorQ(usuarioN,Contrasena)){
+					setVisible(false);
+					M.setVisible(true);					
 				}else{
 					usuario.setText("");
-					passwordField.setText("");
-					try {
-						//ubica el jdialog encima de nuestro jFrame antes de darle visivilidad
-						dialog.setLocation(thisobject.getX(), thisobject.getY());
-						dialog.setVisible(true);
-					} catch (Exception z) {
-						z.printStackTrace();
-					}
-					
+					passwordField.setText("");		
+					JOptionPane.showMessageDialog(null, "Error en el login");
 				}}
 			}
 		});
 	}
-	
-	//metodo para poner invisible la ventana de error
-	
-	public void setjdialoginvisible(){
-		dialog.setVisible(false);
+
+
+	public MenuLogueado getM() {
+		return M;
 	}
+	public CuentosGuardados getCuentos() {
+		return C;
+	}
+	
+	
 	
 }

@@ -26,23 +26,21 @@ import java.awt.Font;
 import java.awt.Color;
 
 public class pantallaRegistro extends JFrame {
-
-	protected JPanel contentPane;
-	protected JTextField usuario;
-	protected JTextField email;
-	protected JButton btnRegistrar;
-	protected JPasswordField password;
-	protected JLabel lblUsuario;
-	protected JLabel lblEmail;
-	protected JLabel lblNewLabel;
+	
 	protected Validador validador;
 	protected Registrar registrador;
 	protected pantallaRegistro frame; 
-	protected JPanel panelExito;
+	pantallaRegistro thisobject = this;
+	
+	protected JPanel contentPane,panelExito;
+	protected JTextField usuario,email;
+	protected JButton btnRegistrar;
+	protected JPasswordField password;
+	protected JLabel lblUsuario,lblEmail,lblNewLabel;
 	protected JLabel Exito;
 	protected JButton btnAceptar;
 	
-	pantallaRegistro thisobject = this;
+
 	//registro_Control control = new registro_Control();		
 			public void run() {
 				try {

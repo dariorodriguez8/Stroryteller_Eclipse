@@ -133,10 +133,10 @@ public class pantallaRegistro extends JFrame {
 						usuario.setText("");
 						email.setText("");
 						
-						panelExito.setVisible(true);
+						
 						//no me deja poner invisible el jframe desde aqui
 						//frame.setVisible(false);
-					    //JOptionPane.showMessageDialog(null, "Se ha realizado el registro con exito");
+					    JOptionPane.showMessageDialog(null, "Se ha realizado el registro con exito");
 						
 						
 					}
@@ -154,7 +154,7 @@ public class pantallaRegistro extends JFrame {
 		contentPane.add(btnRegistrar);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("/Users/noel98_socorro/Desktop/Untitled-8.jpg"));
+		//label.setIcon(new ImageIcon("/Users/noel98_socorro/Desktop/Untitled-8.jpg"));
 		label.setBounds(0, -22, 350, 500);
 		contentPane.add(label);
 	}

@@ -106,7 +106,6 @@ public class MenuLogueado extends JFrame implements ActionListener{
 		JButton btnCuentosGuardados = new JButton("Cuentos Guardados");
 		btnCuentosGuardados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("cuentos Guardados");
 				cuerpo.add(vp.getCuentos());
 				Principal.setVisible(false);
 				vp.getCuentos().setVisible(true);

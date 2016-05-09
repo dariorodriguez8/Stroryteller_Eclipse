@@ -1,23 +1,23 @@
 package laBuena;
-import javax.swing.JPanel;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.FlowLayout;
-import javax.swing.JTextField;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
+import javax.print.DocFlavor.URL;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import Modelo.Conexion;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Font;
-import java.awt.Insets;
-import javax.swing.JScrollPane;
-import javax.swing.ImageIcon;
 
 public class CuentosGuardados extends JPanel {
 	private JTextField txtBuscar;
@@ -78,18 +78,28 @@ public class CuentosGuardados extends JPanel {
 		numeroCuentos = Conexion.GetInstancia().ConsultaNumCuentos();
 		nombre = new String[numeroCuentos];
 		
-		CreaIconos(vp);
+		CreaIconos(vp); //metodo que rellena una lista con los cuentos que se tengan
 		
 	}
 
 	public void CreaIconos(princ vp) {
-		for (int i = 0; i < numeroCuentos; i++) {
-			nombre[i] = Conexion.GetInstancia().ConsultaNombreCuentos(i);
-			JLabel ilblCuento = new JLabel(nombre[i]);
-			ilblCuento.setIcon(new ImageIcon(
-					CuentosGuardados.class.getResource("/javax/swing/plaf/metal/icons/ocean/question.png")));
-			panelCuentos.add(ilblCuento);
-
+		
+		File d = new File("Cuentos");
+		String[] NumCuentos = d.list();
+		
+		for (int i = 0; i < NumCuentos.length; i++) {
+			String img = d.getAbsolutePath()+"\\"+NumCuentos[i]+"\\Icono.png";
+			
+			JButton btnCuento = new JButton(new ImageIcon(img));
+			btnCuento.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					System.out.println("Meteme en el cuento. porfa. anda. venga...");
+					//vp.getCuentos().setVisible(false);
+					
+				}
+			});
+			panelCuentos.add(btnCuento);
+			
 		}
 	}
 

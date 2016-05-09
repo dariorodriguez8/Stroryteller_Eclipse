@@ -127,8 +127,7 @@ public class pantallaRegistro extends JFrame {
 					}
 					else{
 						//procede al registro
-						registrador=new Registrar();
-						registrador.CrearUsuario(usuario.getText(), password.getText(), email.getText());
+						registrador=new Registrar(usuario.getText(), password.getText(), email.getText());
 						EnvioMail m = new EnvioMail();
 						m.enviamail(email.getText());
 						password.setText("");

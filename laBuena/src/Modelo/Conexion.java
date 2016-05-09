@@ -8,8 +8,7 @@ public class Conexion {
 	private static Conexion INSTANCIA = null;
 
 	private Conexion() {
-		RealizaConexion();
-		
+		RealizaConexion();		
 	}
 
 	// METODOS

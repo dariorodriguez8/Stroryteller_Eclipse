@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Registrar{
-
-	public void CrearUsuario(String nombre,String Contrasena,String email){
+   
+	public Registrar(String nombre,String Contrasena,String email){
 	try
 	{
 	Connection cone = Conexion.GetInstancia().con;	
@@ -15,7 +15,7 @@ public class Registrar{
 	
 	Statement myStmnt =cone.createStatement();
 	//ejecuta un query
-	String update = "insert into Users (NombreUs, Pass, foto, Email) values ('" + nombre + "' , '" + Contrasena + "', null, '"+ email +"')";
+	String update = "insert into usuario(NombreUs, Pass, foto, Email) values('" + nombre + "' , '" + Contrasena + "', null, '"+ email +"')";
 	
 	myStmnt.executeUpdate(update);
 	

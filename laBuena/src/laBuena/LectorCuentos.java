@@ -38,7 +38,6 @@ public class LectorCuentos extends JPanel {
 		menu_siguiente.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JButton btnSiguiente = new JButton("Pasar pagina");
-		btnSiguiente.setIcon(new ImageIcon("C:\\Users\\1dam\\Downloads\\Caperucita roja\\1\\1.jpg"));
 		btnSiguiente.setFont(new Font("Arial Black", Font.BOLD, 15));
 		menu_siguiente.add(btnSiguiente);
 		

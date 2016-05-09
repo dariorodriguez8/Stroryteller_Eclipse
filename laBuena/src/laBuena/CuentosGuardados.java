@@ -89,7 +89,6 @@ public class CuentosGuardados extends JPanel {
 		
 		File d = new File("Cuentos");
 		String[] NumCuentos = d.list();
-		
 		for (int i = 0; i < NumCuentos.length; i++) {
 			String img = d.getAbsolutePath()+"\\"+NumCuentos[i]+"\\Icono.png";
 			

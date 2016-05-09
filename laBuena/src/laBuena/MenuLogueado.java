@@ -1,5 +1,6 @@
 package laBuena;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -70,27 +71,34 @@ public class MenuLogueado extends JFrame implements ActionListener{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(46, 204, 113));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		panel_1 = new JPanel();
+		panel_1.setBackground(new Color(46, 204, 113));
 		contentPane.add(panel_1, BorderLayout.NORTH);
 		panel_1.setLayout(new GridLayout(0, 3, 0, 0));
 		
 		JPanel DatosUsuario = new JPanel();
+		DatosUsuario.setBackground(new Color(46, 204, 113));
 		panel_1.add(DatosUsuario);
 		
 		JLabel lblNombre = new JLabel(nombreUsuario);
+		lblNombre.setBackground(new Color(46, 204, 113));
 		DatosUsuario.add(lblNombre);
 		
 		JLabel lblImagen = new JLabel("Im\u00E1gen");
+		lblImagen.setBackground(new Color(46, 204, 113));
 		DatosUsuario.add(lblImagen);
 		
 		JPanel vacio = new JPanel();
+		vacio.setBackground(new Color(46, 204, 113));
 		panel_1.add(vacio);
 		
 		JPanel ModificarUsuario = new JPanel();
+		ModificarUsuario.setBackground(new Color(46, 204, 113));
 		panel_1.add(ModificarUsuario);
 		ModificarUsuario.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -98,9 +106,11 @@ public class MenuLogueado extends JFrame implements ActionListener{
 		ModificarUsuario.add(btnModificar);
 		
 		cuerpo = new JPanel();
+		cuerpo.setBackground(new Color(46, 204, 113));
 		contentPane.add(cuerpo);
 		
 		Principal = new JPanel();
+		Principal.setBackground(new Color(46, 204, 113));
 		cuerpo.add(Principal);
 		
 		JButton btnCuentosGuardados = new JButton("Cuentos Guardados");

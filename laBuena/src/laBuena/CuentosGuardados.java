@@ -1,4 +1,5 @@
 package laBuena;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -44,7 +45,8 @@ public class CuentosGuardados extends JPanel {
 		gbc_panelSuperior.gridy = 0;
 		add(panelSuperior, gbc_panelSuperior);
 		panelSuperior.setLayout(new GridLayout(1, 0, 0, 0));
-
+		panelSuperior.setBackground(new Color(46, 204, 113));
+		
 		txtBuscar = new JTextField();
 		txtBuscar.setHorizontalAlignment(SwingConstants.LEFT);
 		txtBuscar.setFont(new Font("Tahoma", Font.ITALIC, 11));
@@ -53,6 +55,7 @@ public class CuentosGuardados extends JPanel {
 		txtBuscar.setColumns(10);
 
 		JLabel label = new JLabel("");
+		label.setBackground(new Color(46, 204, 113));
 		panelSuperior.add(label);
 
 		JButton btnInicio = new JButton("Inicio");
@@ -65,6 +68,7 @@ public class CuentosGuardados extends JPanel {
 		panelSuperior.add(btnInicio);
 
 		panelCuentos = new JPanel();
+		panelCuentos.setBackground(new Color(46, 204, 113));
 		GridBagConstraints gbc_panelCuentos = new GridBagConstraints();
 		gbc_panelCuentos.insets = new Insets(0, 0, 5, 0);
 		gbc_panelCuentos.fill = GridBagConstraints.BOTH;
@@ -75,7 +79,6 @@ public class CuentosGuardados extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		panelCuentos.add(scrollPane);
 
-		numeroCuentos = Conexion.GetInstancia().ConsultaNumCuentos();
 		nombre = new String[numeroCuentos];
 		
 		CreaIconos(vp); //metodo que rellena una lista con los cuentos que se tengan

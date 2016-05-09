@@ -10,9 +10,11 @@ import javax.swing.border.EmptyBorder;
 import Modelo.Conexion;
 
 import java.awt.FlowLayout;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+
 import java.awt.GridLayout;
 import java.awt.Panel;
 import java.awt.event.ActionListener;
@@ -104,6 +106,15 @@ public class MenuLogueado extends JFrame implements ActionListener{
 		
 		JButton btnModificar = new JButton("Modificar Usuario");
 		ModificarUsuario.add(btnModificar);
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			cuerpo.add(vp.getMod());
+			Principal.setVisible(false);
+			vp.getMod().setVisible(true);
+			System.out.println("Ok");
+			
+			}
+		});
 		
 		cuerpo = new JPanel();
 		cuerpo.setBackground(new Color(46, 204, 113));

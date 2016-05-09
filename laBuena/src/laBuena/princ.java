@@ -15,12 +15,15 @@ import Controlador.princ_Control;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
+
 import java.awt.Color;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.SwingConstants;
+
 import java.awt.Font;
 import java.awt.Window;
 import java.awt.event.ActionListener;
@@ -31,6 +34,9 @@ public class princ extends JFrame {
 
 	private MenuLogueado M = new MenuLogueado(this);
 	private CuentosGuardados C = new CuentosGuardados(this);
+	private Modificar_perfil mod = new Modificar_perfil(this);
+	
+	String Contrasena;
 	
 	
 	protected JPanel contentPane;
@@ -129,7 +135,7 @@ public class princ extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String usuarioN = usuario.getText();
-				String Contrasena = passwordField.getText();
+				Contrasena = passwordField.getText();
 				if(usuarioN.equals("")||Contrasena.equals("")){
 					JOptionPane.showMessageDialog(null, "Faltan datos por completar");
 					usuario.setText("");
@@ -155,6 +161,12 @@ public class princ extends JFrame {
 	}
 	public CuentosGuardados getCuentos() {
 		return C;
+	}
+	public String getContraseña(){
+		return Contrasena;
+	}
+	public Modificar_perfil getMod(){
+		return mod;
 	}
 	
 	

@@ -10,10 +10,12 @@ public class Registrar{
 	public void CrearUsuario(String nombre,String Contrasena,String email){
 	try
 	{
+	Connection cone = Conexion.GetInstancia().con;	
 	//creacion de statement
-	Statement myStmnt = Conexion.con.createStatement();
+	
+	Statement myStmnt =cone.createStatement();
 	//ejecuta un query
-	String update = "insert into Users (Usuario, Contraseña, Img_usuario, Email) values ('" + nombre + "' , '" + Contrasena + "', null, '"+ email +"')";
+	String update = "insert into Users (NombreUs, Pass, foto, Email) values ('" + nombre + "' , '" + Contrasena + "', null, '"+ email +"')";
 	
 	myStmnt.executeUpdate(update);
 	

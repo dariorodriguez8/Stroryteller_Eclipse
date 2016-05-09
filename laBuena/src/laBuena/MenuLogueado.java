@@ -110,6 +110,7 @@ public class MenuLogueado extends JFrame implements ActionListener{
 			public void actionPerformed(ActionEvent arg0) {
 			cuerpo.add(vp.getMod());
 			Principal.setVisible(false);
+			vp.getCuentos().setVisible(false);
 			vp.getMod().setVisible(true);
 			System.out.println("Ok");
 			

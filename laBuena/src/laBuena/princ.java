@@ -42,7 +42,7 @@ public class princ extends JFrame {
 	protected JPanel contentPane;
 	protected JTextField usuario;
 	protected JPasswordField passwordField;
-	protected  princ frame;
+	protected princ frame;
 	protected JLabel label;
 	protected Validador validador;
 	protected JButton btnRegistrar;
@@ -61,9 +61,6 @@ public class princ extends JFrame {
 					frame.setTitle("Storyteller");
 					//la ventana no se puede redimensionar
 					frame.setResizable(false);
-					
-					
-					
 					//falta hacer que la ventana aparezca en el centrode la pantalla
 				} catch (Exception e) {
 					e.printStackTrace();

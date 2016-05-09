@@ -9,6 +9,7 @@ public class Conexion {
 
 	private Conexion() {
 		RealizaConexion();
+		
 	}
 
 	// METODOS

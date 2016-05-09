@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
@@ -111,6 +112,7 @@ public class pantallaRegistro extends JFrame {
 		
 		btnRegistrar = new JButton("Registrar");
 		btnRegistrar.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				validador= new Validador();
 				if(password.getText().equals("")||usuario.getText().equals("")||email.getText().equals("")){

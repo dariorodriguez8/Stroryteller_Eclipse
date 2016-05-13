@@ -11,17 +11,19 @@ import laBuena.princ;
 
 public class Actualizar{
 	public String contrasena="";
+	public String usuario="";
 	private princ vp;
-	public Actualizar(String contraseña){
+	public Actualizar(String contraseña, String usu){
 		contrasena=contraseña;
+		usuario=usu;
 	}
 	public void actualizarContraseña(String cA, String cN) {
-		String nombre ="Pablo";
 		String Pass = cA;
 		try {
 			if (contrasena.equals(Pass)){
 				Statement myStmnt = Conexion.con.createStatement();
-				String actualiza = "UPDATE Usuario SET Pass=\""+cN+ "\" WHERE NombreUs=\""+nombre+"\"";
+				System.out.println(usuario);
+				String actualiza = "UPDATE Usuario SET Pass=\""+cN+ "\" WHERE NombreUs=\""+usuario+"\"";
 				myStmnt.executeUpdate(actualiza);
 			}else{
 				System.out.println("Error");

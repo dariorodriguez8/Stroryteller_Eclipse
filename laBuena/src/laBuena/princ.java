@@ -37,6 +37,7 @@ public class princ extends JFrame {
 	private Modificar_perfil mod = new Modificar_perfil(this);
 	
 	String Contrasena;
+	String usuarioN;
 	
 	
 	protected JPanel contentPane;
@@ -134,7 +135,7 @@ public class princ extends JFrame {
 		
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String usuarioN = usuario.getText();
+				usuarioN = usuario.getText();
 				Contrasena = passwordField.getText();
 				if(usuarioN.equals("")||Contrasena.equals("")){
 					JOptionPane.showMessageDialog(null, "Faltan datos por completar");
@@ -142,6 +143,8 @@ public class princ extends JFrame {
 					passwordField.setText("");
 				}
 				else{
+					M.setNombreUsuario(usuarioN);
+					M.setVisible(false);
 				validador = new Validador();
 				if(validador.ValidadorQ(usuarioN,Contrasena)){
 					setVisible(false);
@@ -167,6 +170,9 @@ public class princ extends JFrame {
 	}
 	public Modificar_perfil getMod(){
 		return mod;
+	}
+	public String getUsuario(){
+		return usuarioN;
 	}
 	
 	

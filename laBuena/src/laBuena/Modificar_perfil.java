@@ -99,7 +99,7 @@ public class Modificar_perfil extends JPanel {
 				}else{
 					if (vp.getContraseña().equals(txtAntiguaContrasea.getText())){
 						JOptionPane.showMessageDialog(null, "Se ha modificado la contraseña");
-						Actualizar act = new Actualizar(vp.getContraseña());
+						Actualizar act = new Actualizar(vp.getContraseña(), vp.getUsuario());
 						act.actualizarContraseña(txtAntiguaContrasea.getText(), txtNuevaContrasea.getText());
 					}else{
 						JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");

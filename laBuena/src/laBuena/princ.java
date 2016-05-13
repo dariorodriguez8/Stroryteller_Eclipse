@@ -143,12 +143,12 @@ public class princ extends JFrame {
 					passwordField.setText("");
 				}
 				else{
-					M.setNombreUsuario(usuarioN);
-					M.setVisible(false);
 				validador = new Validador();
 				if(validador.ValidadorQ(usuarioN,Contrasena)){
+
+					M.setNombreUsuario(usuarioN);
 					setVisible(false);
-					M.setVisible(true);					
+					M.setVisible(true);	
 				}else{
 					usuario.setText("");
 					passwordField.setText("");		

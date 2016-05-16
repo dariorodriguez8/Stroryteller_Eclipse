@@ -77,7 +77,6 @@ public class pantallaRegistro extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				panelExito.setVisible(false);
 				thisobject.setVisible(false);
-				
 			}
 		});
 		btnAceptar.setBounds(85, 144, 117, 29);

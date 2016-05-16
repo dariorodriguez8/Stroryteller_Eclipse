@@ -21,6 +21,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import Modelo.Conexion;
+import java.awt.BorderLayout;
+import javax.swing.ScrollPaneConstants;
 
 public class CuentosGuardados extends JPanel {
 	private JTextField txtBuscar;
@@ -28,7 +30,7 @@ public class CuentosGuardados extends JPanel {
 	private String nombre[];
 	private princ vp;
 	JPanel panelCuentos ;
-
+	JPanel panel_final;
 	
 	public CuentosGuardados(princ vp) {
 		setBackground(new Color(46, 204, 113));
@@ -89,35 +91,46 @@ public class CuentosGuardados extends JPanel {
 		gbc_panelCuentos.gridx = 0;
 		gbc_panelCuentos.gridy = 1;
 		add(panelCuentos, gbc_panelCuentos);
+		panelCuentos.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel = new JPanel();
+		panelCuentos.add(panel, BorderLayout.CENTER);
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JScrollPane scrollPane = new JScrollPane();
-		panelCuentos.add(scrollPane);
-
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		panel.add(scrollPane);
+		
+		panel_final = new JPanel();
+		
+		scrollPane.setViewportView(panel_final);	
+		panel_final.setLayout(new GridLayout(0, 3, 0, 0));
 		nombre = new String[numeroCuentos];
 		
-		CreaIconos(vp); //metodo que rellena una lista con los cuentos que se tengan
-		
+		CreaIconos(vp); //metodo que rellena una lista con los cuentos que se tengan	
 	}
-
 	public void CreaIconos(princ vp) {
 		
-		File d = new File("Cuentos");
+		File d = new File(".\\Cuentos");
 		String[] NumCuentos = d.list();
 		if(d.exists()) { 
 		for (int i = 0; i < NumCuentos.length; i++) {
-			String img = d.getAbsolutePath()+"\\"+NumCuentos[i]+"\\Icono.png";
 			
+			String img = d.getAbsolutePath()+"\\"+NumCuentos[i]+"\\icono.jpg";
+
 			JButton btnCuento = new JButton(new ImageIcon(img));
+			
+			//btnCuento.setLabel(NumCuentos[i]);
+			
 			btnCuento.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					System.out.println("Meteme en el cuento. porfa. anda. venga...");
 					//vp.getCuentos().setVisible(false);
-					
 				}
 			});
-			panelCuentos.add(btnCuento);
-		}
-		}
-	}
+			panel_final.add(btnCuento);
+			panel_final.updateUI();
 
-}
+		}
+		}}}

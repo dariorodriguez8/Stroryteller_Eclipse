@@ -29,6 +29,7 @@ public class CuentosGuardados extends JPanel {
 
 	
 	public CuentosGuardados(princ vp) {
+		setBackground(new Color(46, 204, 113));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0, 0 };
 		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0 };
@@ -48,6 +49,7 @@ public class CuentosGuardados extends JPanel {
 		panelSuperior.setBackground(new Color(46, 204, 113));
 		
 		txtBuscar = new JTextField();
+		
 		txtBuscar.setHorizontalAlignment(SwingConstants.LEFT);
 		txtBuscar.setFont(new Font("Tahoma", Font.ITALIC, 11));
 		panelSuperior.add(txtBuscar);

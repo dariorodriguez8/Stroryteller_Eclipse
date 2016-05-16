@@ -114,6 +114,7 @@ public class MenuLogueado extends JFrame implements ActionListener {
 		JPanel ModificarUsuario = new JPanel();
 		ModificarUsuario.setBackground(new Color(46, 204, 113));
 		panel_1.add(ModificarUsuario);
+		panel_1.setBackground(new Color(46, 204, 113));
 		ModificarUsuario.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		JButton btnModificar = new JButton("Modificar Usuario");

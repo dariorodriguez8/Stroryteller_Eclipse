@@ -20,6 +20,7 @@ import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import java.awt.Component;
@@ -29,22 +30,26 @@ public class Modificar_perfil extends JPanel {
 	private princ vp;
 	private JTextField txtAntiguaContrasea;
 	private JTextField txtNuevaContrasea;
-	JPanel Modificar;
+	
 	/**
 	 * Create the panel.
 	 */
 	public Modificar_perfil(princ vp) {
+		setBackground(new Color(46, 204, 113));
 		setLayout(new GridLayout(0, 5, 0, 0));
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(46, 204, 113));
 		add(panel_2);
 		panel_2.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(46, 204, 113));
 		add(panel_3);
 		panel_3.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JLabel label_1 = new JLabel("");
+		label_1.setBackground(new Color(46, 204, 113));
 		panel_3.add(label_1);
 		
 		
@@ -70,6 +75,7 @@ public class Modificar_perfil extends JPanel {
 		});
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(46, 204, 113));
 		add(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
@@ -88,9 +94,6 @@ public class Modificar_perfil extends JPanel {
 		
 		JButton btnCambiarContraseña = new JButton("Cambiar Contrase\u00F1a");
 		panel.add(btnCambiarContraseña);
-		
-		JLabel label = new JLabel("");
-		add(label);
 		
 		btnCambiarContraseña.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -121,6 +121,8 @@ public class princ extends JFrame {
 							M.setNombreUsuario(usuarioN);
 							setVisible(false);
 							M.setVisible(true);
+							getM().imagenPerfil();
+
 						}else{
 							usuario.setText("");
 							passwordField.setText("");		

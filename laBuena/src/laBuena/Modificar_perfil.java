@@ -11,20 +11,29 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import Modelo.Actualizar;
+import Modelo.CargarFoto;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.File;
+
+
 import java.awt.Component;
 import javax.swing.JSplitPane;
 
@@ -32,10 +41,53 @@ public class Modificar_perfil extends JPanel {
 	private princ vp;
 	private JTextField txtAntiguaContrasea;
 	private JTextField txtNuevaContrasea;
+	File fichero=null;
+	ImageIcon icon = null;
+	Icon icono = null;
+	
 
 	/**
 	 * Create the panel.
 	 */
+	//Metodo para abrir el buscador de ficheros, por defecto busca jpg
+	
+public void cargaImagen(JLabel lbl){
+		
+		JLabel lblFoto = lbl;
+		int resultado;
+		
+		
+		CargarFoto ventana = new CargarFoto();
+
+	    FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG y PNG","jpg","png");
+
+	    ventana.jfchCargarfoto.setFileFilter(filtro);
+
+	    resultado= ventana.jfchCargarfoto.showOpenDialog(null);
+	    
+	    if (JFileChooser.APPROVE_OPTION == resultado){
+
+	        fichero = ventana.jfchCargarfoto.getSelectedFile();
+
+	        try{
+
+	                icon = new ImageIcon(fichero.toString());
+
+	                icono = new ImageIcon(icon.getImage().
+	                getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+
+	                lblFoto.setText(null);
+
+	                lblFoto.setIcon( icono );
+
+	        }catch(Exception ex){
+
+	                JOptionPane.showMessageDialog(null, 
+	                "Error abriendo la imagen "+ ex);
+
+	        }
+	    }
+}
 	public Modificar_perfil(princ vp) {
 		setBackground(new Color(46, 204, 113));
 		setLayout(new GridLayout(0, 5, 0, 0));
@@ -68,7 +120,8 @@ public class Modificar_perfil extends JPanel {
 		btnCambiarImagen.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Se ha modificado la imagen");
+					cargaImagen(vp.getM().getLblImagen());
+				//JOptionPane.showMessageDialog(null, "Se ha modificado la imagen");
 			}
 		});
 

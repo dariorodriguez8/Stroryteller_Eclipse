@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.sql.Blob;
 
 import javax.swing.ImageIcon;
@@ -34,6 +35,18 @@ public class MenuLogueado extends JFrame implements ActionListener {
 	/**
 	 * Launch the application.
 	 */
+	//Método para poner visible la imagen de perfil.
+	public void imagenPerfil(){
+		if (Conexion.GetInstancia().ConsultaImagen(nombreUsuario)==true){
+			System.out.println("Tiene imagen");
+			
+		}else{
+			File imgDir = new File ("laBuena\\bin\\ImagenesAplicacion");
+			String rutaImg = imgDir.getAbsolutePath()+"\\login.jpg";
+			lblImagen.setText("");
+			lblImagen.setIcon(new ImageIcon(rutaImg));
+		}
+	}
 	public static void creaVentana(princ v) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -149,13 +162,18 @@ public class MenuLogueado extends JFrame implements ActionListener {
 
 		JButton btnTienda = new JButton("Tienda");
 		Principal.add(btnTienda);
-
+		
 	}
 
 	public void setNombreUsuario(String nombreUsuario) {
 		this.nombreUsuario = nombreUsuario;
 		lblNombre.setText(this.nombreUsuario);
 		
+	}
+	
+
+	public JLabel getLblImagen() {
+		return lblImagen;
 	}
 
 	@Override

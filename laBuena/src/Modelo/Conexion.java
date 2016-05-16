@@ -51,6 +51,24 @@ public class Conexion {
 	}
 
 	// metodos de consultas
+	public boolean ConsultaImagen(String nombre){
+		System.out.println("Entra consulta");
+		boolean imgbool=false;
+		try {
+			ResultSet rs = null;
+			PreparedStatement cmd = con.prepareStatement("SELECT foto FROM usuario WHERE NombreUs LIKE \""+nombre+"\";");
+			rs = cmd.executeQuery();
+			rs.next();
+			//Comprueba si el tamaño de la select es null
+			if (rs.getBytes(1) != null) {
+				imgbool=true;
+			}
+		} catch (SQLException e) {
+			//e.printStackTrace();
+			System.out.println("Error SQL");
+		}
+		return imgbool;
+	}
 
 	public int ConsultaNumCuentos() {
 		int num = 0;

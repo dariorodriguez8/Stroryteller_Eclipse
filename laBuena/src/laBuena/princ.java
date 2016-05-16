@@ -105,6 +105,12 @@ public class princ extends JFrame {
 		passwordField = new JPasswordField();
 		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
 		passwordField.setBounds(66, 202, 170, 50);
+		passwordField.addActionListener(new ActionListener() {
+			   public void actionPerformed(ActionEvent e) {
+				   Loguea();
+			   }
+				});
+			  
 		panel.add(passwordField);
 		
 		btnLogin = new JButton("LOGIN");
@@ -135,29 +141,33 @@ public class princ extends JFrame {
 		
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				usuarioN = usuario.getText();
-				Contrasena = passwordField.getText();
-				if(usuarioN.equals("")||Contrasena.equals("")){
-					JOptionPane.showMessageDialog(null, "Faltan datos por completar");
-					usuario.setText("");
-					passwordField.setText("");
-				}
-				else{
-					M.setNombreUsuario(usuarioN);
-					M.setVisible(false);
-				validador = new Validador();
-				if(validador.ValidadorQ(usuarioN,Contrasena)){
-					setVisible(false);
-					M.setVisible(true);					
-				}else{
-					usuario.setText("");
-					passwordField.setText("");		
-					JOptionPane.showMessageDialog(null, "Error en el login");
-				}}
+				Loguea();
 			}
 		});
 	}
+	public void Loguea(){
+		usuarioN = usuario.getText();
+		Contrasena = passwordField.getText();
+		if(usuarioN.equals("")||Contrasena.equals("")){
+			JOptionPane.showMessageDialog(null, "Faltan datos por completar");
+			usuario.setText("");
+			passwordField.setText("");
+		}
+		else{
+		validador = new Validador();
+		if(validador.ValidadorQ(usuarioN,Contrasena)){
+			M.setNombreUsuario(usuarioN);
+			setVisible(false);
+			M.setVisible(true);
+			getM().imagenPerfil();
 
+		}else{
+			usuario.setText("");
+			passwordField.setText("");		
+			JOptionPane.showMessageDialog(null, "Error en el login");
+		}}
+	
+	}
 
 	public MenuLogueado getM() {
 		return M;

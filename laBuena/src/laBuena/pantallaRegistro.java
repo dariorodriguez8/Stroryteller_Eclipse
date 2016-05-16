@@ -123,7 +123,6 @@ public class pantallaRegistro extends JFrame {
 					if(validador.ValidadorUsuario(usuario.getText())){
 						//debe mostrar un mensaje de error
 						JOptionPane.showMessageDialog(null, "Existe un usuario con el mismo nombre");
-						
 					}
 					else{
 						//procede al registro
@@ -133,7 +132,6 @@ public class pantallaRegistro extends JFrame {
 						password.setText("");
 						usuario.setText("");
 						email.setText("");
-						
 						
 						//no me deja poner invisible el jframe desde aqui
 						//frame.setVisible(false);

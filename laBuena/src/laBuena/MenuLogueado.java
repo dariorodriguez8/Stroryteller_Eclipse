@@ -37,7 +37,6 @@ public class MenuLogueado extends JFrame implements ActionListener {
 	 */
 	//Método para poner visible la imagen de perfil.
 	public void imagenPerfil(){
-		System.out.println("entra");
 		if (Conexion.GetInstancia().ConsultaImagen(nombreUsuario)==true){
 			System.out.println("Tiene imagen");
 			

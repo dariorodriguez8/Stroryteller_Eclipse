@@ -52,7 +52,6 @@ public class Conexion {
 
 	// metodos de consultas
 	public boolean ConsultaImagen(String nombre){
-		System.out.println("Entra consulta");
 		boolean imgbool=false;
 		try {
 			ResultSet rs = null;

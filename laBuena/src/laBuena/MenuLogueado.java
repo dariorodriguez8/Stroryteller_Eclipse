@@ -122,11 +122,10 @@ public class MenuLogueado extends JFrame implements ActionListener {
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cuerpo.add(vp.getMod());
+				vp.getMod().resetTexto();
 				Principal.setVisible(false);
 				vp.getCuentos().setVisible(false);
 				vp.getMod().setVisible(true);
-				System.out.println("Ok");
-
 			}
 		});
 

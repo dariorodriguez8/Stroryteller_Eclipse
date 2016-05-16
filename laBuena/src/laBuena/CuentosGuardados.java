@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.File;
 
 import javax.print.DocFlavor.URL;
@@ -54,6 +56,16 @@ public class CuentosGuardados extends JPanel {
 		txtBuscar.setFont(new Font("Tahoma", Font.ITALIC, 11));
 		panelSuperior.add(txtBuscar);
 		txtBuscar.setText("Buscar...");
+		txtBuscar.addFocusListener(new FocusListener() {			
+			@Override
+			public void focusLost(FocusEvent e) {
+				txtBuscar.setText("Buscar...");
+			}			
+			@Override
+			public void focusGained(FocusEvent e) {
+				txtBuscar.setText("");
+			}
+		});
 		txtBuscar.setColumns(10);
 
 		JLabel label = new JLabel("");

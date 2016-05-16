@@ -42,7 +42,7 @@ public class MenuLogueado extends JFrame implements ActionListener {
 			System.out.println("Tiene imagen");
 			
 		}else{
-			File imgDir = new File ("laBuena\\bin\\ImagenesAplicacion");
+			File imgDir = new File (".\\ImagenesAplicacion");
 			String rutaImg = imgDir.getAbsolutePath()+"\\login.jpg";
 			lblImagen.setText("");
 			lblImagen.setIcon(new ImageIcon(rutaImg));

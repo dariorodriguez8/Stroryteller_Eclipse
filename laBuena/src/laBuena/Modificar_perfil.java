@@ -1,93 +1,81 @@
 package laBuena;
 
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.sql.SQLException;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import com.mysql.jdbc.PreparedStatement;
 
 import Modelo.Actualizar;
 import Modelo.CargarFoto;
-
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Image;
-
-import javax.swing.BoxLayout;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.BorderLayout;
-import javax.swing.SwingConstants;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import java.io.File;
-
-
-import java.awt.Component;
-import javax.swing.JSplitPane;
+import Modelo.Conexion;
 
 public class Modificar_perfil extends JPanel {
 	private princ vp;
 	private JTextField txtAntiguaContrasea;
 	private JTextField txtNuevaContrasea;
-	File fichero=null;
+	File fichero = null;
 	ImageIcon icon = null;
 	Icon icono = null;
-	
 
 	/**
 	 * Create the panel.
 	 */
-	//Metodo para abrir el buscador de ficheros, por defecto busca jpg
-	
-public void cargaImagen(JLabel lbl){
-		
+	// Metodo para abrir el buscador de ficheros, por defecto busca jpg
+
+	public void cargaImagen(JLabel lbl,String nombre) {
+
 		JLabel lblFoto = lbl;
 		int resultado;
-		
-		
+
 		CargarFoto ventana = new CargarFoto();
 
-	    FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG y PNG","jpg","png");
+		FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG y PNG", "jpg", "png");
 
-	    ventana.jfchCargarfoto.setFileFilter(filtro);
+		ventana.jfchCargarfoto.setFileFilter(filtro);
 
-	    resultado= ventana.jfchCargarfoto.showOpenDialog(null);
-	    
-	    if (JFileChooser.APPROVE_OPTION == resultado){
+		resultado = ventana.jfchCargarfoto.showOpenDialog(null);
 
-	        fichero = ventana.jfchCargarfoto.getSelectedFile();
+		if (JFileChooser.APPROVE_OPTION == resultado) {
 
-	        try{
+			fichero = ventana.jfchCargarfoto.getSelectedFile();
+			try {
+				icon = new ImageIcon(fichero.toString());
 
-	                icon = new ImageIcon(fichero.toString());
+				icono = new ImageIcon(icon.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
 
-	                icono = new ImageIcon(icon.getImage().
-	                getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+				lblFoto.setText(null);
 
-	                lblFoto.setText(null);
+				lblFoto.setIcon(icono);
+				Conexion.GetInstancia().guardaImagen(fichero.toString(),nombre);
 
-	                lblFoto.setIcon( icono );
+			} catch (Exception ex) {
 
-	        }catch(Exception ex){
+				JOptionPane.showMessageDialog(null, "Error abriendo la imagen " + ex);
 
-	                JOptionPane.showMessageDialog(null, 
-	                "Error abriendo la imagen "+ ex);
+			}
+		}
+	}
 
-	        }
-	    }
-}
+
 	public Modificar_perfil(princ vp) {
 		setBackground(new Color(46, 204, 113));
 		setLayout(new GridLayout(0, 5, 0, 0));
@@ -120,8 +108,10 @@ public void cargaImagen(JLabel lbl){
 		btnCambiarImagen.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-					cargaImagen(vp.getM().getLblImagen());
-				//JOptionPane.showMessageDialog(null, "Se ha modificado la imagen");
+				cargaImagen(vp.getM().getLblImagen(),vp.getUsuario());
+
+				// JOptionPane.showMessageDialog(null, "Se ha modificado la
+				// imagen");
 			}
 		});
 

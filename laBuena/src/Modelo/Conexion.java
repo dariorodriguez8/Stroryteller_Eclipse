@@ -1,6 +1,13 @@
 package Modelo;
 
-import java.sql.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Conexion {
 
@@ -121,5 +128,20 @@ public class Conexion {
 		}
 		return rdo;
 	}
-
+	
+	public void guardaImagen(String ruta,String nombre) throws SQLException, FileNotFoundException
+	{
+	String sql = "update usuario set foto = (?) where NombreUs like \""+nombre+"\";";
+	//Creamos una cadena para después prepararla
+	PreparedStatement stmt = con.prepareStatement(sql);
+	File imagen = new File(ruta);
+	//ruta puede ser: "/home/cmop/Desktop/1.jpg"
+	FileInputStream   fis = new FileInputStream(imagen);
+	//Lo convertimos en un Stream
+	stmt.setBinaryStream(1, fis, (int) imagen.length());
+	//Asignamos el Stream al Statement
+	System.out.println(sql);
+	stmt.execute();
+	
+	}
 }

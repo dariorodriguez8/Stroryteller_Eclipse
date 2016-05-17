@@ -116,7 +116,6 @@ public class CuentosGuardados extends JPanel {
 		String[] NumCuentos = d.list();
 		if(d.exists()) { 
 		for (int i = 0; i < NumCuentos.length; i++) {
-			
 			String img = d.getAbsolutePath()+"\\"+NumCuentos[i]+"\\icono.jpg";
 
 			JButton btnCuento = new JButton(new ImageIcon(img));

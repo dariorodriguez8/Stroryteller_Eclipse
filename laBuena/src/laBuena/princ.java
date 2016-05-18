@@ -144,7 +144,7 @@ public class princ extends JFrame {
 		chckbxEnglish_1 = new JCheckBox("");
 		
 		chckbxEnglish_1.setBackground(new Color(46, 204, 113));
-		chckbxEnglish_1.setBounds(104, 259, 26, 23);
+		chckbxEnglish_1.setBounds(104, 259, 58, 23);
 		panel.add(chckbxEnglish_1);
 		
 		File imgDir = new File(".\\bin\\ImagenesAplicacion");

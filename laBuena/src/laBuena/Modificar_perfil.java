@@ -41,7 +41,7 @@ public class Modificar_perfil extends JPanel {
 	 */
 	// Metodo para abrir el buscador de ficheros, por defecto busca jpg
 
-	public void cargaImagen(JLabel lbl,String nombre) {
+	public void cargaImagen(JLabel lbl, String nombre) {
 
 		JLabel lblFoto = lbl;
 		int resultado;
@@ -65,16 +65,18 @@ public class Modificar_perfil extends JPanel {
 				lblFoto.setText(null);
 
 				lblFoto.setIcon(icono);
-				Conexion.GetInstancia().guardaImagen(fichero.toString(),nombre);
+				Conexion.GetInstancia().guardaImagen(fichero.toString(), nombre);
 
 			} catch (Exception ex) {
+				if (vp.chckbxEnglish_1.isSelected()) {
+					JOptionPane.showMessageDialog(null, "Error opening image " + ex);
 
-				JOptionPane.showMessageDialog(null, "Error abriendo la imagen " + ex);
+				} else
+					JOptionPane.showMessageDialog(null, "Error abriendo la imagen " + ex);
 
 			}
 		}
 	}
-
 
 	public Modificar_perfil(princ vp) {
 		setBackground(new Color(46, 204, 113));
@@ -93,7 +95,11 @@ public class Modificar_perfil extends JPanel {
 		label_1.setBackground(new Color(46, 204, 113));
 		panel_3.add(label_1);
 
-		JButton btnInicio = new JButton("Inicio");
+		JButton btnInicio;
+		if (vp.chckbxEnglish_1.isSelected()) {
+			btnInicio = new JButton("Index");
+		} else
+			btnInicio = new JButton("Inicio");
 		panel_3.add(btnInicio);
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -102,13 +108,18 @@ public class Modificar_perfil extends JPanel {
 			}
 		});
 
-		JButton btnCambiarImagen = new JButton("Cambiar Imagen");
+		JButton btnCambiarImagen;
+		if (vp.chckbxEnglish_1.isSelected())
+			btnCambiarImagen = new JButton("Change Image");
+		else
+			btnCambiarImagen = new JButton("Cambiar Imagen");
+
 		add(btnCambiarImagen);
 
 		btnCambiarImagen.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				cargaImagen(vp.getM().getLblImagen(),vp.getUsuario());
+				cargaImagen(vp.getM().getLblImagen(), vp.getUsuario());
 
 				// JOptionPane.showMessageDialog(null, "Se ha modificado la
 				// imagen");
@@ -128,14 +139,18 @@ public class Modificar_perfil extends JPanel {
 			public void focusLost(FocusEvent e) {
 				// si no tiene texto, lo rellena con el default
 				if (txtAntiguaContrasea.getText().isEmpty()) {
-					txtAntiguaContrasea.setText("Antigua contrase\u00F1a");
+					if (vp.chckbxEnglish_1.isSelected())
+						txtAntiguaContrasea.setText("Old password");
+					else
+						txtAntiguaContrasea.setText("Antigua contrase\u00F1a");
 				}
 			}
 
 			@Override
 			public void focusGained(FocusEvent e) {
 				// vacia el campo cuando lo clicas
-				if (txtAntiguaContrasea.getText().equals("Antigua contrase\u00F1a")) {
+				if (txtAntiguaContrasea.getText().equals("Antigua contrase\u00F1a")
+						|| txtAntiguaContrasea.getText().equals("Old password")) {
 					txtAntiguaContrasea.setText("");
 				}
 			}
@@ -150,14 +165,18 @@ public class Modificar_perfil extends JPanel {
 			public void focusLost(FocusEvent e) {
 				// si no tiene texto, lo rellena con el default
 				if (txtNuevaContrasea.getText().isEmpty()) {
-					txtNuevaContrasea.setText("Nueva contrase\u00F1a");
+					if (vp.chckbxEnglish_1.isSelected())
+						txtNuevaContrasea.setText("New password");
+					else
+						txtNuevaContrasea.setText("Nueva contrase\u00F1a");
 				}
 			}
 
 			@Override
 			public void focusGained(FocusEvent e) {
 				// vacia el campo cuando lo clicas y no tiene default escrito
-				if (txtNuevaContrasea.getText().equals("Nueva contrase\u00F1a")) {
+				if (txtNuevaContrasea.getText().equals("Nueva contrase\u00F1a")
+						|| txtNuevaContrasea.getText().equals("New password")) {
 					txtNuevaContrasea.setText("");
 				}
 			}
@@ -165,7 +184,10 @@ public class Modificar_perfil extends JPanel {
 		txtNuevaContrasea.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (txtAntiguaContrasea.getText().isEmpty() || txtNuevaContrasea.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Faltan campos por rellenar");
+					if (vp.chckbxEnglish_1.isSelected())
+						JOptionPane.showMessageDialog(null, "There can't be empty fields");
+					else
+						JOptionPane.showMessageDialog(null, "Faltan campos por rellenar");
 				} else {
 					if (vp.getContraseña().equals(txtAntiguaContrasea.getText())) {
 						JOptionPane.showMessageDialog(null, "Se ha modificado la contraseña");
@@ -181,26 +203,48 @@ public class Modificar_perfil extends JPanel {
 		txtNuevaContrasea.setText("Nueva contrase\u00F1a");
 		txtNuevaContrasea.setColumns(16);
 
-		JButton btnCambiarContraseña = new JButton("Cambiar Contrase\u00F1a");
+		JButton btnCambiarContraseña;
+		if (vp.chckbxEnglish_1.isSelected())
+			btnCambiarContraseña = new JButton("Change password");
+		else
+			btnCambiarContraseña = new JButton("Cambiar Contrase\u00F1a");
 		panel.add(btnCambiarContraseña);
 
 		btnCambiarContraseña.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (txtAntiguaContrasea.getText().isEmpty() || txtNuevaContrasea.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Faltan campos por rellenar");
+					if (vp.chckbxEnglish_1.isSelected())
+						JOptionPane.showMessageDialog(null, "There can not be empty fields");
+					else
+						JOptionPane.showMessageDialog(null, "Faltan campos por rellenar");
 				} else {
 					if (vp.getContraseña().equals(txtAntiguaContrasea.getText())) {
-						JOptionPane.showMessageDialog(null, "Se ha modificado la contraseña");
+						if (vp.chckbxEnglish_1.isSelected())
+							JOptionPane.showMessageDialog(null, "The password has been modified");
+						else
+							JOptionPane.showMessageDialog(null, "Se ha modificado la contraseña");
 						Actualizar act = new Actualizar(vp.getContraseña(), vp.getUsuario());
 						act.actualizarContraseña(txtAntiguaContrasea.getText(), txtNuevaContrasea.getText());
 					} else {
-						JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+						if (vp.chckbxEnglish_1.isSelected())
+							JOptionPane.showMessageDialog(null, "Passwords do not match");
+						else
+							JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
 					}
 
 				}
 			}
 		});
 
+		if (vp.chckbxEnglish_1.isSelected())
+			resetText();
+		else
+			resetTexto();
+	}
+
+	public void resetText() {
+		txtAntiguaContrasea.setText("Old password");
+		txtNuevaContrasea.setText("New password");
 	}
 
 	public void resetTexto() {

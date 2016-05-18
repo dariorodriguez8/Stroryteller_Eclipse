@@ -1,4 +1,5 @@
 package laBuena;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -29,9 +30,9 @@ public class CuentosGuardados extends JPanel {
 	private int numeroCuentos;
 	private String nombre[];
 	private princ vp;
-	JPanel panelCuentos ;
+	JPanel panelCuentos;
 	JPanel panel_final;
-	
+
 	public CuentosGuardados(princ vp) {
 		setBackground(new Color(46, 204, 113));
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -40,7 +41,6 @@ public class CuentosGuardados extends JPanel {
 		gridBagLayout.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
-
 		JPanel panelSuperior = new JPanel();
 		GridBagConstraints gbc_panelSuperior = new GridBagConstraints();
 		gbc_panelSuperior.fill = GridBagConstraints.HORIZONTAL;
@@ -51,18 +51,28 @@ public class CuentosGuardados extends JPanel {
 		add(panelSuperior, gbc_panelSuperior);
 		panelSuperior.setLayout(new GridLayout(1, 0, 0, 0));
 		panelSuperior.setBackground(new Color(46, 204, 113));
-		
+
 		txtBuscar = new JTextField();
-		
+
 		txtBuscar.setHorizontalAlignment(SwingConstants.LEFT);
 		txtBuscar.setFont(new Font("Tahoma", Font.ITALIC, 11));
 		panelSuperior.add(txtBuscar);
-		txtBuscar.setText("Buscar...");
-		txtBuscar.addFocusListener(new FocusListener() {			
+		if (vp.chckbxEnglish_1.isSelected()) {
+			txtBuscar.setText("Search...");
+		} else {
+			txtBuscar.setText("Buscar...");
+		}
+
+		txtBuscar.addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				txtBuscar.setText("Buscar...");
-			}			
+				if (vp.chckbxEnglish_1.isSelected()) {
+					txtBuscar.setText("Search...");
+				} else {
+					txtBuscar.setText("Buscar...");
+				}
+			}
+
 			@Override
 			public void focusGained(FocusEvent e) {
 				txtBuscar.setText("");
@@ -74,7 +84,12 @@ public class CuentosGuardados extends JPanel {
 		label.setBackground(new Color(46, 204, 113));
 		panelSuperior.add(label);
 
-		JButton btnInicio = new JButton("Inicio");
+		JButton btnInicio;
+		if (vp.chckbxEnglish_1.isSelected()) {
+			btnInicio = new JButton("Index");
+		} else {
+			btnInicio = new JButton("Inicio");
+		}
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -92,7 +107,7 @@ public class CuentosGuardados extends JPanel {
 		gbc_panelCuentos.gridy = 1;
 		add(panelCuentos, gbc_panelCuentos);
 		panelCuentos.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel = new JPanel();
 		panelCuentos.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
@@ -101,35 +116,39 @@ public class CuentosGuardados extends JPanel {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		panel.add(scrollPane);
-		
+
 		panel_final = new JPanel();
-		
-		scrollPane.setViewportView(panel_final);	
+
+		scrollPane.setViewportView(panel_final);
 		panel_final.setLayout(new GridLayout(0, 3, 0, 0));
 		nombre = new String[numeroCuentos];
-		
-		CreaIconos(vp); //metodo que rellena una lista con los cuentos que se tengan	
+
+		CreaIconos(vp); // metodo que rellena una lista con los cuentos que se
+						// tengan
 	}
+
 	public void CreaIconos(princ vp) {
-		
+
 		File d = new File(".\\Cuentos");
 		String[] NumCuentos = d.list();
-		if(d.exists()) { 
-		for (int i = 0; i < NumCuentos.length; i++) {
-			String img = d.getAbsolutePath()+"\\"+NumCuentos[i]+"\\icono.jpg";
+		if (d.exists()) {
+			for (int i = 0; i < NumCuentos.length; i++) {
+				String img = d.getAbsolutePath() + "\\" + NumCuentos[i] + "\\icono.jpg";
 
-			JButton btnCuento = new JButton(new ImageIcon(img));
-			
-			//btnCuento.setLabel(NumCuentos[i]);
-			
-			btnCuento.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("Meteme en el cuento. porfa. anda. venga...");
-					//vp.getCuentos().setVisible(false);
-				}
-			});
-			panel_final.add(btnCuento);
-			panel_final.updateUI();
+				JButton btnCuento = new JButton(new ImageIcon(img));
+				btnCuento.setText("" + i);
+				// btnCuento.setLabel(NumCuentos[i]);
 
+				btnCuento.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						System.out.println("Meteme en el cuento. porfa. anda. venga...");
+						// vp.getCuentos().setVisible(false);
+					}
+				});
+				panel_final.add(btnCuento);
+				panel_final.updateUI();
+
+			}
 		}
-		}}}
+	}
+}

@@ -35,19 +35,20 @@ public class MenuLogueado extends JFrame implements ActionListener {
 	/**
 	 * Launch the application.
 	 */
-	//Método para poner visible la imagen de perfil.
-	public void imagenPerfil(){
-		if (Conexion.GetInstancia().ConsultaImagen(nombreUsuario)==true){
+	// Método para poner visible la imagen de perfil.
+	public void imagenPerfil() {
+		if (Conexion.GetInstancia().ConsultaImagen(nombreUsuario) == true) {
 			System.out.println("Tiene imagen");
-			
-		}else{
-			File imgDir = new File (".\\bin\\ImagenesAplicacion");
 
-			String rutaImg = imgDir.getAbsolutePath()+"\\login.jpg";
+		} else {
+			File imgDir = new File(".\\bin\\ImagenesAplicacion");
+
+			String rutaImg = imgDir.getAbsolutePath() + "\\login.jpg";
 			lblImagen.setText("");
 			lblImagen.setIcon(new ImageIcon(rutaImg));
 		}
 	}
+
 	public static void creaVentana(princ v) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -117,7 +118,10 @@ public class MenuLogueado extends JFrame implements ActionListener {
 		lblNombre.setBackground(new Color(46, 204, 113));
 		DatosUsuario.add(lblNombre);
 
-		lblImagen = new JLabel("Im\u00E1gen");
+		if (vp.chckbxEnglish_1.isSelected()) {
+			lblImagen = new JLabel("Image");
+		} else
+			lblImagen = new JLabel("Im\u00E1gen");
 		lblImagen.setBackground(new Color(46, 204, 113));
 		DatosUsuario.add(lblImagen);
 
@@ -131,12 +135,18 @@ public class MenuLogueado extends JFrame implements ActionListener {
 		panel_1.setBackground(new Color(46, 204, 113));
 		ModificarUsuario.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JButton btnModificar = new JButton("Modificar Usuario");
+		JButton btnModificar;
+		if (vp.chckbxEnglish_1.isSelected()) {
+			btnModificar = new JButton("Modify User");
+		} else {
+			btnModificar = new JButton("Modificar Usuario");
+		}
 		ModificarUsuario.add(btnModificar);
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				System.out.println(vp.chckbxEnglish_1.isSelected());
+
 				cuerpo.add(vp.getMod());
-				vp.getMod().resetTexto();
 				Principal.setVisible(false);
 				vp.getCuentos().setVisible(false);
 				vp.getMod().setVisible(true);
@@ -151,7 +161,11 @@ public class MenuLogueado extends JFrame implements ActionListener {
 		Principal.setBackground(new Color(46, 204, 113));
 		cuerpo.add(Principal);
 
-		JButton btnCuentosGuardados = new JButton("Cuentos Guardados");
+		JButton btnCuentosGuardados;
+		if (vp.chckbxEnglish_1.isSelected()) {
+			btnCuentosGuardados = new JButton("Saved Tales");
+		}else
+		btnCuentosGuardados = new JButton("Cuentos Guardados");
 		btnCuentosGuardados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cuerpo.add(vp.getCuentos());
@@ -161,35 +175,31 @@ public class MenuLogueado extends JFrame implements ActionListener {
 		});
 		Principal.add(btnCuentosGuardados);
 
-		JButton btnTienda = new JButton("Tienda");
+		JButton btnTienda;
+		if (vp.chckbxEnglish_1.isSelected()) {
+			btnTienda = new JButton("Shop");
+		}else
+		btnTienda = new JButton("Tienda");
 		Principal.add(btnTienda);
-		
+
 	}
 
 	public void setNombreUsuario(String nombreUsuario) {
 		this.nombreUsuario = nombreUsuario;
 		lblNombre.setText(this.nombreUsuario);
-		
+
 	}
-	
 
 	public JLabel getLblImagen() {
 		return lblImagen;
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		panel_1.setVisible(false);
-		switch (e.getActionCommand().toString()) {
-		case "Cuentos Guardados":
-			cuerpo.add(vp.getCuentos());
-			Principal.setVisible(false);
-			vp.getCuentos().setVisible(true);
-			break;
-
-		default:
-			break;
-		}
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
+
+	
 
 }

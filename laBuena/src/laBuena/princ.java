@@ -27,19 +27,20 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Window;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
-
+import javax.swing.JCheckBox;
 
 public class princ extends JFrame {
+	public JCheckBox chckbxEnglish_1 = new JCheckBox("English");
 
 	private MenuLogueado M = new MenuLogueado(this);
 	private CuentosGuardados C = new CuentosGuardados(this);
 	private Modificar_perfil mod = new Modificar_perfil(this);
-	
+
 	String Contrasena;
 	String usuarioN;
-	
-	
+
 	protected JPanel contentPane;
 	protected JTextField usuario;
 	protected JPasswordField passwordField;
@@ -48,11 +49,11 @@ public class princ extends JFrame {
 	protected Validador validador;
 	protected JButton btnRegistrar;
 	protected JButton btnLogin;
-	
+
 	protected pantallaRegistro registro = new pantallaRegistro();
 	protected princ thisobject = this;
-	//princ_Control control = new princ_Control();
-	
+	// princ_Control control = new princ_Control();
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -60,16 +61,16 @@ public class princ extends JFrame {
 					princ frame = new princ();
 					frame.setVisible(true);
 					frame.setTitle("Storyteller");
-					//la ventana no se puede redimensionar
+					// la ventana no se puede redimensionar
 					frame.setResizable(false);
-					//falta hacer que la ventana aparezca en el centrode la pantalla
+					// falta hacer que la ventana aparezca en el centrode la
+					// pantalla
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-
 
 	public princ() {
 		//Jdialog de error en en registro 
@@ -139,52 +140,82 @@ public class princ extends JFrame {
 		btnRegistrar.setBounds(71, 339, 160, 17);
 		panel.add(btnRegistrar);
 		
+		
+		chckbxEnglish_1 = new JCheckBox("");
+		
+		chckbxEnglish_1.setBackground(new Color(46, 204, 113));
+		chckbxEnglish_1.setBounds(104, 259, 26, 23);
+		panel.add(chckbxEnglish_1);
+		
+		File imgDir = new File(".\\bin\\ImagenesAplicacion");
+		String rutaImg = imgDir.getAbsolutePath() + "\\flag.png";
+		chckbxEnglish_1.setIcon(new ImageIcon(rutaImg));
+		chckbxEnglish_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (chckbxEnglish_1.isSelected()) {
+					File imgDir = new File(".\\bin\\ImagenesAplicacion");
+					String rutaImg = imgDir.getAbsolutePath() + "\\flag2.png";
+					chckbxEnglish_1.setIcon(new ImageIcon(rutaImg));
+				}else{
+					File imgDir = new File(".\\bin\\ImagenesAplicacion");
+					String rutaImg = imgDir.getAbsolutePath() + "\\flag.png";
+					chckbxEnglish_1.setIcon(new ImageIcon(rutaImg));
+					}
+			}
+		});
+		
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				C = new CuentosGuardados(thisobject);
+				M = new MenuLogueado(thisobject);
+				mod = new Modificar_perfil(thisobject);
 				Loguea();
 			}
 		});
 	}
-	public void Loguea(){
+
+	public void Loguea() {
 		usuarioN = usuario.getText();
 		Contrasena = passwordField.getText();
-		if(usuarioN.equals("")||Contrasena.equals("")){
+		if (usuarioN.equals("") || Contrasena.equals("")) {
 			JOptionPane.showMessageDialog(null, "Faltan datos por completar");
 			usuario.setText("");
 			passwordField.setText("");
-		}
-		else{
-		validador = new Validador();
-		if(validador.ValidadorQ(usuarioN,Contrasena)){
-			M.setNombreUsuario(usuarioN);
-			setVisible(false);
-			M.setVisible(true);
-			getM().imagenPerfil();
+		} else {
+			validador = new Validador();
+			if (validador.ValidadorQ(usuarioN, Contrasena)) {
+				M.setNombreUsuario(usuarioN);
+				setVisible(false);
+				M.setVisible(true);
+				getM().imagenPerfil();
 
-		}else{
-			usuario.setText("");
-			passwordField.setText("");		
-			JOptionPane.showMessageDialog(null, "Error en el login");
-		}}
-	
+			} else {
+				usuario.setText("");
+				passwordField.setText("");
+				JOptionPane.showMessageDialog(null, "Error en el login");
+			}
+		}
+
 	}
 
 	public MenuLogueado getM() {
 		return M;
 	}
+
 	public CuentosGuardados getCuentos() {
 		return C;
 	}
-	public String getContraseña(){
+
+	public String getContraseña() {
 		return Contrasena;
 	}
-	public Modificar_perfil getMod(){
+
+	public Modificar_perfil getMod() {
 		return mod;
 	}
-	public String getUsuario(){
+
+	public String getUsuario() {
 		return usuarioN;
 	}
-	
-	
-	
 }

@@ -1,13 +1,20 @@
 package Modelo;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import javax.imageio.ImageIO;
+
+import com.sun.mail.iap.ByteArray;
 
 public class Conexion {
 
@@ -58,7 +65,7 @@ public class Conexion {
 	}
 
 	// metodos de consultas
-	public boolean ConsultaImagen(String nombre){
+	public boolean ConsultaExisteImagen(String nombre){
 		boolean imgbool=false;
 		try {
 			ResultSet rs = null;
@@ -75,6 +82,24 @@ public class Conexion {
 		}
 		return imgbool;
 	}
+	public BufferedImage ConsultaImagen(String nombre){
+		Blob blob = null;
+		BufferedImage img = null;
+
+			try {
+				ResultSet rs=null;
+				PreparedStatement cmd = con.prepareStatement("SELECT foto FROM usuario WHERE NombreUs LIKE \""+nombre+"\";");
+				rs = cmd.executeQuery();
+				rs.next();
+				blob=rs.getBlob("foto");
+				byte[] data = blob.getBytes(1, (int)blob.length());
+				img = ImageIO.read(new ByteArrayInputStream(data));
+				
+			} catch (Exception e) {
+				System.out.println("Algo ha ido mal");
+			}
+		return img;
+	} 
 
 	public int ConsultaNumCuentos() {
 		int num = 0;
@@ -140,7 +165,6 @@ public class Conexion {
 	//Lo convertimos en un Stream
 	stmt.setBinaryStream(1, fis, (int) imagen.length());
 	//Asignamos el Stream al Statement
-	System.out.println(sql);
 	stmt.execute();
 	
 	}

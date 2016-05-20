@@ -8,10 +8,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.sql.SQLException;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,8 +17,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
-import com.mysql.jdbc.PreparedStatement;
 
 import Modelo.Actualizar;
 import Modelo.CargarFoto;
@@ -78,7 +72,8 @@ public class Modificar_perfil extends JPanel {
 		}
 	}
 
-	public Modificar_perfil(princ vp) {
+	public Modificar_perfil(princ vpa) {
+		vp = vpa;
 		setBackground(new Color(46, 204, 113));
 		setLayout(new GridLayout(0, 5, 0, 0));
 		JPanel panel_2 = new JPanel();
@@ -193,6 +188,7 @@ public class Modificar_perfil extends JPanel {
 						JOptionPane.showMessageDialog(null, "Se ha modificado la contraseña");
 						Actualizar act = new Actualizar(vp.getContraseña(), vp.getUsuario());
 						act.actualizarContraseña(txtAntiguaContrasea.getText(), txtNuevaContrasea.getText());
+						actualizarPass(txtNuevaContrasea.getText());
 					} else {
 						JOptionPane.showMessageDialog(null, "La contraseña no es correcta");
 					}
@@ -225,6 +221,7 @@ public class Modificar_perfil extends JPanel {
 							JOptionPane.showMessageDialog(null, "Se ha modificado la contraseña");
 						Actualizar act = new Actualizar(vp.getContraseña(), vp.getUsuario());
 						act.actualizarContraseña(txtAntiguaContrasea.getText(), txtNuevaContrasea.getText());
+						
 					} else {
 						if (vp.chckbxEnglish_1.isSelected())
 							JOptionPane.showMessageDialog(null, "Passwords do not match");
@@ -241,7 +238,9 @@ public class Modificar_perfil extends JPanel {
 		else
 			resetTexto();
 	}
-
+	public void actualizarPass(String psw){
+		vp.setContraseña(psw);
+	}
 	public void resetText() {
 		txtAntiguaContrasea.setText("Old password");
 		txtNuevaContrasea.setText("New password");

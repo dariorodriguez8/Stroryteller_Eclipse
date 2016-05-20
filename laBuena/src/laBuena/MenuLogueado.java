@@ -5,13 +5,20 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
-import java.sql.Blob;
+import java.security.MessageDigest;
+import java.util.Arrays;
+import java.util.Base64;
 
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,7 +28,7 @@ import javax.swing.border.EmptyBorder;
 
 import Modelo.Conexion;
 
-public class MenuLogueado extends JFrame implements ActionListener {
+public class MenuLogueado extends JFrame{
 
 	private princ vp;
 	private JPanel contentPane;
@@ -37,8 +44,11 @@ public class MenuLogueado extends JFrame implements ActionListener {
 	 */
 	// Método para poner visible la imagen de perfil.
 	public void imagenPerfil() {
-		if (Conexion.GetInstancia().ConsultaImagen(nombreUsuario) == true) {
-			System.out.println("Tiene imagen");
+		if (Conexion.GetInstancia().ConsultaExisteImagen(nombreUsuario) == true) {
+			lblImagen.setText(null);
+
+			BufferedImage img = Conexion.GetInstancia().ConsultaImagen(nombreUsuario);
+			lblImagen.setIcon(new ImageIcon(img.getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
 
 		} else {
 			File imgDir = new File(".\\bin\\ImagenesAplicacion");
@@ -48,7 +58,6 @@ public class MenuLogueado extends JFrame implements ActionListener {
 			lblImagen.setIcon(new ImageIcon(rutaImg));
 		}
 	}
-
 	public static void creaVentana(princ v) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -91,6 +100,7 @@ public class MenuLogueado extends JFrame implements ActionListener {
 			@Override
 			public void windowClosed(WindowEvent e) {
 				Conexion.GetInstancia().CierraConexion();
+				vp.getMod().resetTexto();
 			}
 
 			@Override
@@ -144,7 +154,6 @@ public class MenuLogueado extends JFrame implements ActionListener {
 		ModificarUsuario.add(btnModificar);
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println(vp.chckbxEnglish_1.isSelected());
 
 				cuerpo.add(vp.getMod());
 				Principal.setVisible(false);
@@ -152,7 +161,16 @@ public class MenuLogueado extends JFrame implements ActionListener {
 				vp.getMod().setVisible(true);
 			}
 		});
-
+		JButton btnLogout = new JButton("Log Out");
+		ModificarUsuario.add(btnLogout);
+		btnLogout.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				vp.setVisible(true);
+				dispose();
+			}
+		});
+		
 		cuerpo = new JPanel();
 		cuerpo.setBackground(new Color(46, 204, 113));
 		contentPane.add(cuerpo);
@@ -164,8 +182,8 @@ public class MenuLogueado extends JFrame implements ActionListener {
 		JButton btnCuentosGuardados;
 		if (vp.chckbxEnglish_1.isSelected()) {
 			btnCuentosGuardados = new JButton("Saved Tales");
-		}else
-		btnCuentosGuardados = new JButton("Cuentos Guardados");
+		} else
+			btnCuentosGuardados = new JButton("Cuentos Guardados");
 		btnCuentosGuardados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cuerpo.add(vp.getCuentos());
@@ -178,28 +196,20 @@ public class MenuLogueado extends JFrame implements ActionListener {
 		JButton btnTienda;
 		if (vp.chckbxEnglish_1.isSelected()) {
 			btnTienda = new JButton("Shop");
-		}else
-		btnTienda = new JButton("Tienda");
+		} else
+			btnTienda = new JButton("Tienda");
 		Principal.add(btnTienda);
 
 	}
-
 	public void setNombreUsuario(String nombreUsuario) {
 		this.nombreUsuario = nombreUsuario;
 		lblNombre.setText(this.nombreUsuario);
 
 	}
-
 	public JLabel getLblImagen() {
 		return lblImagen;
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
-
+	
+		 
 }

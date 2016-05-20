@@ -11,6 +11,7 @@ public class Validador{
 	Boolean who=false;
 	try
 	{
+		Encriptar enc = new Encriptar();
 	 //creacion de statement
 	Statement myStmnt = con.createStatement();
 	//ejecuta un query
@@ -18,7 +19,7 @@ public class Validador{
 	
 	while(myRs.next()) 
 	{
-		if((myRs.getString("NombreUs").equals(n)) && (myRs.getString("Pass").equals(c))){
+		if((myRs.getString("NombreUs").equals(n)) && (myRs.getString("Pass").equals(enc.Encriptado(c)))){
 			who=true;
 		    
 		}

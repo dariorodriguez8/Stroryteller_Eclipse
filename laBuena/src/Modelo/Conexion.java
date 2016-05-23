@@ -44,13 +44,10 @@ public class Conexion {
 			INSTANCIA=new Conexion();
 		}
 	}
-	
 	public static Conexion GetInstancia(){
 		if (INSTANCIA==null) CreaInstancia();
 		return INSTANCIA;
 	}
-	
-	
 	public void CierraConexion() {
 		INSTANCIA = null;
 		try {

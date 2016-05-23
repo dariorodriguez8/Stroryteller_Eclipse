@@ -133,18 +133,18 @@ public class CuentosGuardados extends JPanel {
 		String[] NumCuentos = d.list();
 		if (d.exists()) {
 			for (int i = 0; i < NumCuentos.length; i++) {
+	            int b=i;
 				String img = d.getAbsolutePath() + "\\" + NumCuentos[i] + "\\icono.jpg";
 
 				JButton btnCuento = new JButton(new ImageIcon(img));
-				btnCuento.setText("" + i);
-				// btnCuento.setLabel(NumCuentos[i]);
-
-				btnCuento.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						System.out.println("Meteme en el cuento. porfa. anda. venga...");
-						// vp.getCuentos().setVisible(false);
-					}
-				});
+				  //btnCuento.setLabel(NumCuentos[i]);
+	            
+	            btnCuento.addActionListener(new ActionListener() {
+	                public void actionPerformed(ActionEvent e) {
+	                    Cuento cucu = new Cuento(NumCuentos[b]);
+	                    cucu.setVisible();
+	                }
+	            });
 				panel_final.add(btnCuento);
 				panel_final.updateUI();
 

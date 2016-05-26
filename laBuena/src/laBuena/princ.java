@@ -25,6 +25,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import Modelo.ConexionAD;
+import Modelo.ConexionAD2;
 import Modelo.Validador;
 
 public class princ extends JFrame {
@@ -181,9 +183,17 @@ public class princ extends JFrame {
 			validador = new Validador();
 			if (validador.ValidadorQ(usuarioN, Contrasena)) {
 				M.setNombreUsuario(usuarioN);
-				setVisible(false);
+				
+				
+				ConexionAD AD = new ConexionAD();
+				ConexionAD2 AD2 = new ConexionAD2();
+				AD2.main(null);
+				
+				
 				M.setVisible(true);
 				getM().imagenPerfil();
+				dispose();
+
 
 			} else {
 				usuario.setText("");

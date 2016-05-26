@@ -25,7 +25,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import Modelo.ConexionAD;
 import Modelo.ConexionAD2;
 import Modelo.Validador;
 
@@ -185,7 +184,6 @@ public class princ extends JFrame {
 				M.setNombreUsuario(usuarioN);
 				
 				
-				ConexionAD AD = new ConexionAD();
 				ConexionAD2 AD2 = new ConexionAD2();
 				AD2.main(null);
 				
@@ -199,6 +197,7 @@ public class princ extends JFrame {
 				usuario.setText("");
 				passwordField.setText("");
 				JOptionPane.showMessageDialog(null, "Error en el login");
+				System.out.println(validador.ValidadorQ(usuarioN,Contrasena ));
 			}
 		}
 

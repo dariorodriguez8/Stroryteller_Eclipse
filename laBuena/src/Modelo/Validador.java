@@ -19,6 +19,7 @@ public class Validador{
 	
 	while(myRs.next()) 
 	{
+		System.out.println("llega");
 		if((myRs.getString("NombreUs").equals(n)) && (myRs.getString("Pass").equals(enc.Encriptado(c)))){
 			who=true;
 		    

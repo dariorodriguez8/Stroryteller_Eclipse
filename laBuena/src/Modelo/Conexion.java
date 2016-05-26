@@ -31,7 +31,7 @@ public class Conexion {
 		
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
 		//conexion con la base de datos
-		con=DriverManager.getConnection("jdbc:mysql://localhost:3306/pi","root","");
+		con=DriverManager.getConnection("jdbc:mysql://localhost:3306/pi","dario","");
 	    //la siguiente conexion deberia enlazar con el hosting, pero no funtiona
 		//con=DriverManager.getConnection("jdbc:mysql://storytellerapp.com/u950456253_laroc","u950456253_root","storycon");
 	}catch (SQLException ex) {

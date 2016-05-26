@@ -1,5 +1,7 @@
 package Modelo;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Hashtable;
 
 import javax.naming.Context;
@@ -10,14 +12,14 @@ import javax.naming.directory.InitialDirContext;
 public class ConexionAD2{
 	
 	public static void main(String[] args) {
-
+		
 		Hashtable<String, String> env = new Hashtable<String, String>();
 		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
 		env.put(Context.SECURITY_AUTHENTICATION, "simple");
 		env.put(Context.PROVIDER_URL, "ldap://10.2.72.135");
 		
 		//Rellenamos con el usuario/dominio y password
-		env.put(Context.SECURITY_PRINCIPAL, "aifega@win2012sistemas.com");
+		env.put(Context.SECURITY_PRINCIPAL, "WIN2012SISTEMAS@win2012sistemas.com");
 		env.put(Context.SECURITY_CREDENTIALS, "4abc987,I");
 
 		DirContext ctx;

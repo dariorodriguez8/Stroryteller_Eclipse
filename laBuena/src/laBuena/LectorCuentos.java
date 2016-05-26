@@ -32,23 +32,7 @@ public class LectorCuentos extends JPanel {
     private final Action action = new SwingAction();
 
     public LectorCuentos(String cuento, Cuento l) {
-        ImageIcon pantallas[] = new ImageIcon[8];
-        pantallas[0] = new ImageIcon(".\\Cuentos\\" + cuento
-                + "\\1__A_D\\0.jpg");
-        pantallas[1] = new ImageIcon(".\\Cuentos\\" + cuento
-                + "\\1__A_D\\1.jpg");
-        pantallas[2] = new ImageIcon(".\\Cuentos\\" + cuento
-                + "\\2__A_D\\0.jpg");
-        pantallas[3] = new ImageIcon(".\\Cuentos\\" + cuento
-                + "\\2__A_D\\1.jpg");
-        pantallas[4] = new ImageIcon(".\\Cuentos\\" + cuento
-                + "\\2__A_D\\2.jpg");
-        pantallas[5] = new ImageIcon(".\\Cuentos\\" + cuento
-                + "\\2__A_D\\3.jpg");
-        pantallas[6] = new ImageIcon(".\\Cuentos\\" + cuento
-                + "\\2__B_F\\0.jpg");
-        pantallas[7] = new ImageIcon(".\\Cuentos\\" + cuento
-                + "\\2__B_F\\1.jpg");
+   
 
         setLayout(null);
         this.cuento = cuento;
@@ -59,7 +43,7 @@ public class LectorCuentos extends JPanel {
         
         hoja.setBounds(0, 0, 768, 460);
         pagina.add(hoja);
-        hoja.setIcon(new ImageIcon(".\\Cuentos\\" + cuento + "\\1__A_D\\portada.jpg"));
+        hoja.setIcon(new ImageIcon("C:\\Cuentos\\" + cuento + "\\portada.jpg"));
 
         decisiones = new JPanel();
         decisiones.setBounds(0, 460, 768, 140);
@@ -205,12 +189,12 @@ public class LectorCuentos extends JPanel {
         add(empezar);
         empezar.setLayout(new GridLayout(1, 0, 0, 0));
         
-        JButton empezarbtn = new JButton("New button");
+        JButton empezarbtn = new JButton("Empezar");
         empezarbtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 gestionaCuento();
                 setVisibleMenu();
-                subPagina=0;
+                //subPagina=0;
             }
         });
         empezar.add(empezarbtn);
@@ -252,11 +236,11 @@ public class LectorCuentos extends JPanel {
         
     }
     private String gestionaCuento() {
-        File d = new File(".\\Cuentos\\" + cuento);
+        File d = new File("C:\\Cuentos\\" + cuento);
         String[] NumCuentos = d.list();
         if (d.exists()) {
-            for (int i = 0; i < ((NumCuentos.length) - 1); i++) {
-                File f = new File(".\\Cuentos\\" + cuento + "\\"
+            for (int i = 0; i < ((NumCuentos.length) - 2); i++) {
+                File f = new File("C:\\Cuentos\\" + cuento + "\\"
                         + NumCuentos[i]);
                 String[] subCuentos = f.list();
                 
@@ -283,7 +267,7 @@ public class LectorCuentos extends JPanel {
                             System.out.println("dd");
                             if (subPagina == (subCuentos.length-1)) {
                                 
-                                String fil = ".\\Cuentos\\"+cuento+"\\"+ NumCuentos[i]
+                                String fil = "C:\\Cuentos\\"+cuento+"\\"+ NumCuentos[i]
                                         + "\\" + subPagina + ".jpg";
                                 
                                 setVisibleDecision();
@@ -315,7 +299,7 @@ public class LectorCuentos extends JPanel {
                                 return "a";
                             } else {
                                 
-                                String fil = ".\\Cuentos\\"+cuento+"\\"+ NumCuentos[i]
+                                String fil = "C:\\Cuentos\\"+cuento+"\\"+ NumCuentos[i]
                                         + "\\" + subPagina + ".jpg";
                                 
                                 System.out.println(fil);
@@ -334,7 +318,7 @@ public class LectorCuentos extends JPanel {
                         if (tipoO == 'F') {
                             if (subPagina == subCuentos.length-1) {
                                 setVisibleFin();
-                                String fil = ".\\Cuentos\\"+cuento+"\\"+ NumCuentos[i]
+                                String fil = "C:\\Cuentos\\"+cuento+"\\"+ NumCuentos[i]
                                         + "\\" + subPagina + ".jpg";
                                 
                                 
@@ -349,7 +333,7 @@ public class LectorCuentos extends JPanel {
 
                             } else {
                                 
-                                String fil = ".\\Cuentos\\"+cuento+"\\"+ NumCuentos[i]
+                                String fil = "C:\\Cuentos\\"+cuento+"\\"+ NumCuentos[i]
                                         + "\\" + subPagina + ".jpg";
                                 
                                 System.out.println(fil);

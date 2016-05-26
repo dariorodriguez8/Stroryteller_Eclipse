@@ -81,7 +81,7 @@ public class CuentosGuardados extends JPanel {
 		txtBuscar.setColumns(10);
 
 		JLabel label = new JLabel("");
-		label.setBackground(new Color(46, 204, 113));
+		label.setBackground(new Color(27,94,32));
 		panelSuperior.add(label);
 
 		JButton btnInicio;
@@ -129,12 +129,12 @@ public class CuentosGuardados extends JPanel {
 
 	public void CreaIconos(princ vp) {
 
-		File d = new File(".\\Cuentos");
+		File d = new File("C:\\Cuentos");
 		String[] NumCuentos = d.list();
 		if (d.exists()) {
 			for (int i = 0; i < NumCuentos.length; i++) {
 	            int b=i;
-				String img = d.getAbsolutePath() + "\\" + NumCuentos[i] + "\\icono.jpg";
+				String img = d + NumCuentos[i] + "\\icono.jpg";
 
 				JButton btnCuento = new JButton(new ImageIcon(img));
 				  //btnCuento.setLabel(NumCuentos[i]);

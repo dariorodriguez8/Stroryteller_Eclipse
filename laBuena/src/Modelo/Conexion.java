@@ -151,6 +151,15 @@ public class Conexion {
 		}
 		return rdo;
 	}
+	public ResultSet ConsultaTodosUsuarios() {
+		ResultSet rs=null;
+				try {
+			PreparedStatement cmd = con.prepareStatement("SELECT * FROM usuario");
+			rs = cmd.executeQuery();
+		} catch (Exception e) {
+		}
+		return rs;
+	}
 	
 	public void guardaImagen(String ruta,String nombre) throws SQLException, FileNotFoundException
 	{

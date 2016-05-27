@@ -11,7 +11,7 @@ import javax.naming.directory.InitialDirContext;
 
 public class ConexionAD2{
 	
-	public static void main(String[] args) {
+	public void ConexionAD2(String user,String pass) {
 		
 		Hashtable<String, String> env = new Hashtable<String, String>();
 		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
@@ -19,8 +19,8 @@ public class ConexionAD2{
 		env.put(Context.PROVIDER_URL, "ldap://10.2.72.135");
 		
 		//Rellenamos con el usuario/dominio y password
-		env.put(Context.SECURITY_PRINCIPAL, "WIN2012SISTEMAS@win2012sistemas.com");
-		env.put(Context.SECURITY_CREDENTIALS, "4abc987,I");
+		env.put(Context.SECURITY_PRINCIPAL, user+"@win2012sistemas.com");
+		env.put(Context.SECURITY_CREDENTIALS, pass);
 
 		DirContext ctx;
 

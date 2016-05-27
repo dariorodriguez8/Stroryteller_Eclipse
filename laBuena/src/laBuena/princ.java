@@ -6,13 +6,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.security.MessageDigest;
-import java.util.Arrays;
-import java.util.Base64;
-
-import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -47,6 +40,7 @@ public class princ extends JFrame {
 	protected JButton btnRegistrar;
 	protected JButton btnLogin;
 	protected princ thisobject = this;
+	protected JCheckBox chckbxAdmin;
 
 	protected pantallaRegistro registro = new pantallaRegistro();
 
@@ -82,10 +76,11 @@ public class princ extends JFrame {
 
 		JLabel lblLogo = new JLabel("");
 		// coloca el fondo de
-		lblLogo.setIcon(new ImageIcon(princ.class.getResource("/ImagenesAplicacion/Untitled-3.jpg")));
+		lblLogo.setIcon(new ImageIcon(princ.class
+				.getResource("/ImagenesAplicacion/Untitled-3.jpg")));
 		lblLogo.setBounds(0, -22, 300, 400);
 		contentPane.add(lblLogo);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(46, 204, 113));
 		panel.setBounds(300, 0, 300, 378);
@@ -116,7 +111,8 @@ public class princ extends JFrame {
 		panel.add(btnLogin);
 
 		label = new JLabel("");
-		label.setIcon(new ImageIcon(princ.class.getResource("/ImagenesAplicacion/lolll.jpg")));
+		label.setIcon(new ImageIcon(princ.class
+				.getResource("/ImagenesAplicacion/lolll.jpg")));
 		label.setBounds(0, 0, 300, 100);
 		panel.add(label);
 
@@ -141,11 +137,14 @@ public class princ extends JFrame {
 		chckbxEnglish_1.setBounds(104, 259, 58, 23);
 		panel.add(chckbxEnglish_1);
 
-		JLabel asdf[] = new JLabel[10];
-
 		File imgDir = new File(".\\bin\\ImagenesAplicacion");
 		String rutaImg = imgDir.getAbsolutePath() + "\\flag.png";
 		chckbxEnglish_1.setIcon(new ImageIcon(rutaImg));
+
+		chckbxAdmin = new JCheckBox("admin");
+		chckbxAdmin.setBounds(179, 259, 97, 23);
+		chckbxAdmin.setBackground(new Color(46, 204, 113));
+		panel.add(chckbxAdmin);
 		chckbxEnglish_1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -179,25 +178,37 @@ public class princ extends JFrame {
 			usuario.setText("");
 			passwordField.setText("");
 		} else {
-			validador = new Validador();
-			if (validador.ValidadorQ(usuarioN, Contrasena)) {
-				M.setNombreUsuario(usuarioN);
-				
-				/*
+
+			if (chckbxAdmin.isSelected()) {
 				ConexionAD2 AD2 = new ConexionAD2();
-				AD2.main(null);
-				*/
-				
-				M.setVisible(true);
-				getM().imagenPerfil();
+				AD2.ConexionAD2(usuarioN, Contrasena);
+				MenuAdmin frame = new MenuAdmin();
+				frame.setVisible(true);
 				dispose();
-
-
 			} else {
-				usuario.setText("");
-				passwordField.setText("");
-				JOptionPane.showMessageDialog(null, "Error en el login");
-				System.out.println(validador.ValidadorQ(usuarioN,Contrasena ));
+				validador = new Validador();
+				if (validador.ValidadorQ(usuarioN, Contrasena)) {
+					M.setNombreUsuario(usuarioN);
+					M.setVisible(true);
+					getM().imagenPerfil();
+					dispose();
+
+				} else {
+					validador = new Validador();
+					if (validador.ValidadorQ(usuarioN, Contrasena)) {
+						M.setNombreUsuario(usuarioN);
+						M.setVisible(true);
+						getM().imagenPerfil();
+						dispose();
+
+					} else {
+						usuario.setText("");
+						passwordField.setText("");
+						JOptionPane.showMessageDialog(null, "Error en el login");
+						System.out.println(validador.ValidadorQ(usuarioN,
+								Contrasena));
+					}
+				}
 			}
 		}
 
@@ -215,7 +226,6 @@ public class princ extends JFrame {
 		return mod;
 	}
 
-	
 	public String getUsuario() {
 		return usuarioN;
 	}
@@ -227,5 +237,4 @@ public class princ extends JFrame {
 	public void setContraseña(String pw) {
 		Contrasena = pw;
 	}
-
 }

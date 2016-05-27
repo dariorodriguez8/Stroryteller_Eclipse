@@ -85,7 +85,7 @@ public class princ extends JFrame {
 		lblLogo.setIcon(new ImageIcon(princ.class.getResource("/ImagenesAplicacion/Untitled-3.jpg")));
 		lblLogo.setBounds(0, -22, 300, 400);
 		contentPane.add(lblLogo);
-
+		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(46, 204, 113));
 		panel.setBounds(300, 0, 300, 378);
@@ -183,10 +183,10 @@ public class princ extends JFrame {
 			if (validador.ValidadorQ(usuarioN, Contrasena)) {
 				M.setNombreUsuario(usuarioN);
 				
-				
+				/*
 				ConexionAD2 AD2 = new ConexionAD2();
 				AD2.main(null);
-				
+				*/
 				
 				M.setVisible(true);
 				getM().imagenPerfil();

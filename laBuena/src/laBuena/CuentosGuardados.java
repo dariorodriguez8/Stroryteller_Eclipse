@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -112,33 +113,32 @@ public class CuentosGuardados extends JPanel {
 		panelCuentos.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		panel.add(scrollPane);
 
 		panel_final = new JPanel();
 
-		scrollPane.setViewportView(panel_final);
 		panel_final.setLayout(new GridLayout(0, 3, 0, 0));
 		nombre = new String[numeroCuentos];
 
 		CreaIconos(vp); // metodo que rellena una lista con los cuentos que se
 						// tengan
+
+		JScrollPane scrollPane = new JScrollPane(panel_final);
+		scrollPane.setViewportView(panel_final);
+
+		panel.add(scrollPane);
 	}
 
 	public void CreaIconos(princ vp) {
 
-		File d = new File("C:\\Cuentos");
+		File d = new File("C:\\Cuentos\\");
 		String[] NumCuentos = d.list();
 		if (d.exists()) {
 			for (int i = 0; i < NumCuentos.length; i++) {
 	            int b=i;
-				String img = d + NumCuentos[i] + "\\icono.jpg";
-
+				String img = d +"\\"+NumCuentos[i] + "\\icono.jpg";
 				JButton btnCuento = new JButton(new ImageIcon(img));
-				  //btnCuento.setLabel(NumCuentos[i]);
-	            
+				panel_final.add(btnCuento);
+				
 	            btnCuento.addActionListener(new ActionListener() {
 	                public void actionPerformed(ActionEvent e) {
 	                    Cuento cucu = new Cuento(NumCuentos[b]);

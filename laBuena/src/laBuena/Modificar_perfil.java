@@ -34,7 +34,6 @@ public class Modificar_perfil extends JPanel {
 	 * Create the panel.
 	 */
 	// Metodo para abrir el buscador de ficheros, por defecto busca jpg
-
 	public void cargaImagen(JLabel lbl, String nombre) {
 
 		JLabel lblFoto = lbl;
@@ -115,9 +114,6 @@ public class Modificar_perfil extends JPanel {
 
 			public void actionPerformed(ActionEvent arg0) {
 				cargaImagen(vp.getM().getLblImagen(), vp.getUsuario());
-
-				// JOptionPane.showMessageDialog(null, "Se ha modificado la
-				// imagen");
 			}
 		});
 
@@ -238,9 +234,12 @@ public class Modificar_perfil extends JPanel {
 		else
 			resetTexto();
 	}
+
 	public void actualizarPass(String psw){
 		vp.setContraseña(psw);
 	}
+	
+	//metodos para poner el texto predeterminado en funcion del idioma
 	public void resetText() {
 		txtAntiguaContrasea.setText("Old password");
 		txtNuevaContrasea.setText("New password");

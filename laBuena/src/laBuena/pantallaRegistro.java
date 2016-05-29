@@ -48,6 +48,7 @@ public class pantallaRegistro extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setResizable(false);
 
 		panelExito = new JPanel();
 		panelExito.setBounds(33, 118, 295, 202);
@@ -137,13 +138,11 @@ public class pantallaRegistro extends JFrame {
 		contentPane.add(btnRegistrar);
 
 		JLabel label = new JLabel("");
-		// label.setIcon(new
-		// ImageIcon("/Users/noel98_socorro/Desktop/Untitled-8.jpg"));
-		label.setBounds(0, -22, 350, 500);
+		label.setIcon(new ImageIcon(".\\src\\ImagenesAplicacion\\Untitled-8.jpg"));
+		label.setBounds(0, 0, 350, 500);
 		contentPane.add(label);
 	}
 
-	
 	public void run() {
 		try {
 			frame = new pantallaRegistro();

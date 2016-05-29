@@ -53,8 +53,6 @@ public class princ extends JFrame {
 					frame.setTitle("Storyteller");
 					// la ventana no se puede redimensionar
 					frame.setResizable(false);
-					// falta hacer que la ventana aparezca en el centrode la
-					// pantalla
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -63,9 +61,6 @@ public class princ extends JFrame {
 	}
 
 	public princ() {
-		// Jdialog de error en en registro
-		// dialog = new ErrorRegistro(thisobject);
-		// dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 400);
@@ -75,9 +70,8 @@ public class princ extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblLogo = new JLabel("");
-		// coloca el fondo de
-		lblLogo.setIcon(new ImageIcon(princ.class
-				.getResource("/ImagenesAplicacion/Untitled-3.jpg")));
+		// coloca el fondo
+		lblLogo.setIcon(new ImageIcon(princ.class.getResource("/ImagenesAplicacion/Untitled-3.jpg")));
 		lblLogo.setBounds(0, -22, 300, 400);
 		contentPane.add(lblLogo);
 
@@ -111,8 +105,7 @@ public class princ extends JFrame {
 		panel.add(btnLogin);
 
 		label = new JLabel("");
-		label.setIcon(new ImageIcon(princ.class
-				.getResource("/ImagenesAplicacion/lolll.jpg")));
+		label.setIcon(new ImageIcon(princ.class.getResource("/ImagenesAplicacion/lolll.jpg")));
 		label.setBounds(0, 0, 300, 100);
 		panel.add(label);
 
@@ -162,15 +155,17 @@ public class princ extends JFrame {
 
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				C = new CuentosGuardados(thisobject);
+				C.updateUI();
 				M = new MenuLogueado(thisobject);
-				mod = new Modificar_perfil(thisobject);
+				mod.updateUI();
 				Loguea();
 			}
 		});
 	}
 
 	public void Loguea() {
+		// metodo que realiza el Login, atacando a la base de datos y comparando
+		// el usuario y la contraseña(ya cifrada)
 		usuarioN = usuario.getText();
 		Contrasena = passwordField.getText();
 		if (usuarioN.isEmpty() || Contrasena.isEmpty()) {
@@ -178,7 +173,7 @@ public class princ extends JFrame {
 			usuario.setText("");
 			passwordField.setText("");
 		} else {
-
+			// aqui comprueba si has seleccionado si eres administrador o no
 			if (chckbxAdmin.isSelected()) {
 				ConexionAD2 AD2 = new ConexionAD2();
 				AD2.ConexionAD2(usuarioN, Contrasena);
@@ -205,8 +200,6 @@ public class princ extends JFrame {
 						usuario.setText("");
 						passwordField.setText("");
 						JOptionPane.showMessageDialog(null, "Error en el login");
-						System.out.println(validador.ValidadorQ(usuarioN,
-								Contrasena));
 					}
 				}
 			}

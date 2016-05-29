@@ -63,10 +63,11 @@ public class CuentosGuardados extends JPanel {
 		} else {
 			txtBuscar.setText("Buscar...");
 		}
-
+		//interaccion del campo de texto buscar
 		txtBuscar.addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
+				txtBuscar.setFont(new Font("Tahoma", Font.ITALIC, 11));
 				if (vp.chckbxEnglish_1.isSelected()) {
 					txtBuscar.setText("Search...");
 				} else {
@@ -77,6 +78,7 @@ public class CuentosGuardados extends JPanel {
 			@Override
 			public void focusGained(FocusEvent e) {
 				txtBuscar.setText("");
+				txtBuscar.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			}
 		});
 		txtBuscar.setColumns(10);
@@ -119,8 +121,7 @@ public class CuentosGuardados extends JPanel {
 		panel_final.setLayout(new GridLayout(0, 3, 0, 0));
 		nombre = new String[numeroCuentos];
 
-		CreaIconos(vp); // metodo que rellena una lista con los cuentos que se
-						// tengan
+		CreaIconos(); 
 
 		JScrollPane scrollPane = new JScrollPane(panel_final);
 		scrollPane.setViewportView(panel_final);
@@ -128,7 +129,8 @@ public class CuentosGuardados extends JPanel {
 		panel.add(scrollPane);
 	}
 
-	public void CreaIconos(princ vp) {
+	// metodo que rellena una lista con los cuentos que se tengan en local
+	public void CreaIconos() {
 
 		File d = new File("C:\\Cuentos\\");
 		String[] NumCuentos = d.list();
@@ -137,6 +139,7 @@ public class CuentosGuardados extends JPanel {
 	            int b=i;
 				String img = d +"\\"+NumCuentos[i] + "\\icono.jpg";
 				JButton btnCuento = new JButton(new ImageIcon(img));
+				btnCuento.setMargin(new Insets(1, 1, 1, 1));
 				panel_final.add(btnCuento);
 				
 	            btnCuento.addActionListener(new ActionListener() {
